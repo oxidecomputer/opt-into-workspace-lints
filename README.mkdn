@@ -1,0 +1,15 @@
+# Opt Cargo workspaces into workspace lint config
+
+This is a single-purpose tool that takes a Cargo workspace and edits all
+workspace members, opting them into workspace-level lint configuration.
+
+That is, it finds all `Cargo.toml` files associated with member crates, and
+
+- Adds a top-level `lints` table if there isn't one already.
+- Adjusts `lints.workspace` to `true`, adding or changing the `workspace` key as
+  needed.
+- Writes it back.
+
+Workspace-level lint configuration was added relatively recently, and was made
+opt-in, so older workspaces containing many crates require tedious editing to
+centralize the lint config. This tool automates that tedious editing.
